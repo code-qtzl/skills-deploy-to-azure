@@ -1,0 +1,15 @@
+# This is a staging workflow
+
+name: Stage the app
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  pull_request:
+    types: [labeled]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # conditional filters the build where label is called 'stage'
+    if: contains(github.event.pull_request.labels.*.name, 'stage')
